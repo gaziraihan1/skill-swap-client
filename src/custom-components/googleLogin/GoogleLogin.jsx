@@ -34,9 +34,9 @@ export default function GoogleLogin() {
   return (
     <button
   onClick={handleGoogleLogin}
-  className="flex items-center gap-2 px-5 py-2 bg-white border border-gray-300 text-gray-700 hover:bg-gray-100 rounded-md shadow-sm transition duration-200"
+  className="flex justify-center items-center gap-2 px-5 py-2 bg-white border border-gray-300 text-gray-700 hover:bg-gray-100 rounded-md shadow-sm transition duration-200 w-full"
 >
-  <FcGoogle className="text-xl" />
+  <FcGoogle className="text-xl " />
   Login with Google
 </button>
 

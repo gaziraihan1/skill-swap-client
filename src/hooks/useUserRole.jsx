@@ -11,7 +11,7 @@ export default function useUserRole() {
     enabled: !!user?.email,
     queryFn: async () => {
       const res = await axiosSecure.get(`/users/role/${user?.email}`);
-      return res.data.role;
+      return res.data?.role || '';
     },
   });
 

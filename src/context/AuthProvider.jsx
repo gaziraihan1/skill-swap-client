@@ -9,6 +9,7 @@ import {
   signInWithEmailAndPassword,
   signInWithPopup,
   signOut,
+  updateProfile,
 } from 'firebase/auth';
 
 const provider = new GoogleAuthProvider();
@@ -37,25 +38,15 @@ export default function AuthProvider({ children }) {
     return signOut(auth);
   };
 
+  const updateUser = (updateData) => {
+    return updateProfile(auth.currentUser, updateData);
+  };
+
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, async currentUser => {
       setUser(currentUser);
       setLoading(false);
-      const email = currentUser?.email;
-
-      if(currentUser) {
-        const res = await fetch('http://localhost:5000/jwt', {
-          method: 'POST',
-          headers: {'content-type': 'application/json'},
-          body: JSON.stringify({email})
-        });
-        const data = await res.json();
-        
-        localStorage.setItem('token', data?.token)
-      }
-      else{
-        localStorage.removeItem('token')
-      }
+      
     });
     return () => unsubscribe();
   }, []);
@@ -66,6 +57,8 @@ export default function AuthProvider({ children }) {
     signInWithGoogle,
     logout,
     loading,
+    setLoading,
+    updateUser,
     user,
   };
 

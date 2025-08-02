@@ -3,23 +3,28 @@
 import { useState, useEffect } from 'react';
 import { usePathname, useRouter } from 'next/navigation';
 import useAuth from '@/hooks/useAuth';
-import useUserRole from '@/hooks/useUserRole';
 import { FaBars, FaTimes } from 'react-icons/fa';
 import Sidebar from '../components/Sidebar';
+import useUserRole from '@/hooks/useUserRole';
 
 export default function DashboardLayout({ children }) {
   const { user, loading } = useAuth();
+  console.log(user)
   const { role } = useUserRole();
+  console.log(role)
+  console.log(loading)
   const router = useRouter();
+  const pathname = usePathname();
   const [showSidebar, setShowSidebar] = useState(false);
 
   useEffect(() => {
     if (!loading && !user) {
+      localStorage.setItem('redirectAfterLogin', pathname)
       router.push('/login');
     }
   }, [user, loading, router]);
 
-  if (loading || !user || !role) return <div className="p-10 text-center">Loading...</div>;
+  if (loading || !user ) return <div className="p-10 text-center">Loading...</div>;
 
   return (
     <div className="flex min-h-screen bg-gray-50">

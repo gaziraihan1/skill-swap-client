@@ -1,33 +1,46 @@
+'use client'
 import axios from 'axios'
-import React from 'react'
+import useAuth from './useAuth'
+import { useEffect } from 'react'
 
 const axiosSecure = axios.create({
-    baseURL: 'http://localhost:5000'
+  baseURL: 'http://localhost:5000',
 })
 
-axiosSecure.interceptors.request.use(
-    (config) => {
-        const token = localStorage.getItem('token');
-        if(token) {
-            config.headers.Authorization = `Bearer ${token}`
-        }
-        return config
-    }
-);
-
-axiosSecure.interceptors.response.use(
-    (response) => response, 
-    (error) => {
-        if(error.response?.status === 401 || error.response?.status === 403) {
-            localStorage.removeItem('token');
-             window.location.href = "/login";
-        }
-        return Promise.reject(error)
-    }
-);
+let interceptorsSet = false;
 
 const useAxiosSecure = () => {
-    return axiosSecure
+  const { user, logout } = useAuth()
+
+  useEffect(() => {
+    if (!interceptorsSet && user) {
+      interceptorsSet = true
+
+      axiosSecure.interceptors.request.use(
+        async (config) => {
+          if (user) {
+            const token = await user.getIdToken()
+            config.headers.Authorization = `Bearer ${token}`
+          }
+          return config
+        },
+        (error) => Promise.reject(error)
+      )
+
+      axiosSecure.interceptors.response.use(
+        (response) => response,
+        (error) => {
+          if (error.response?.status === 401 || error.response?.status === 403) {
+            logout()
+              .then(() => console.log('Logged out due to auth error'))
+          }
+          return Promise.reject(error)
+        }
+      )
+    }
+  }, [user, logout])
+
+  return axiosSecure
 }
 
 export default useAxiosSecure
