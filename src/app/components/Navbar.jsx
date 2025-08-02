@@ -1,6 +1,7 @@
 'use client';
 
 import useAuth from '@/hooks/useAuth';
+import useUserRole from '@/hooks/useUserRole';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { useState } from 'react';
@@ -10,6 +11,7 @@ const Navbar = () => {
   const pathname = usePathname();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const { user, logout } = useAuth();
+  const {role} = useUserRole()
 
   const logoutUser = () => {
     logout().then(() => console.log('Logged out'));
@@ -24,7 +26,6 @@ const Navbar = () => {
     ? [
         { name: 'Dashboard', href: '/dashboard' },
         { name: 'Profile', href: '/profile' },
-        ...(user?.role === 'admin' ? [{ name: 'Admin', href: '/admin' }] : []),
       ]
     : [
         { name: 'Login', href: '/login' },

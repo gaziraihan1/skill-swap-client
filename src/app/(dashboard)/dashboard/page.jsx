@@ -3,14 +3,16 @@
 import { useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import useAuth from '@/hooks/useAuth';
+import useUserRole from '@/hooks/useUserRole';
 
 export default function DashboardRedirectPage() {
   const router = useRouter();
   const { user } = useAuth();
+  const {role} = useUserRole()
 
   useEffect(() => {
     if (user) {
-      if (user.role === 'admin') {
+      if (role === 'admin') {
         router.replace('/dashboard/admin');
       } else {
         router.replace('/dashboard/user');

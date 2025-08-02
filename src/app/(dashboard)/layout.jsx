@@ -9,10 +9,7 @@ import useUserRole from '@/hooks/useUserRole';
 
 export default function DashboardLayout({ children }) {
   const { user, loading } = useAuth();
-  console.log(user)
   const { role } = useUserRole();
-  console.log(role)
-  console.log(loading)
   const router = useRouter();
   const pathname = usePathname();
   const [showSidebar, setShowSidebar] = useState(false);
@@ -24,7 +21,7 @@ export default function DashboardLayout({ children }) {
     }
   }, [user, loading, router]);
 
-  if (loading || !user ) return <div className="p-10 text-center">Loading...</div>;
+  if (loading || !user || !role ) return <div className="p-10 text-center">Loading...</div>;
 
   return (
     <div className="flex min-h-screen bg-gray-50">
