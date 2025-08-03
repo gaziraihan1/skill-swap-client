@@ -172,11 +172,11 @@ export default function MyOffersPage() {
               >
                 <div className="flex items-center gap-4 mb-4">
                   <Image
-                    src={offer.userPhoto || "/default-avatar.png"}
+                    src={offer?.userPhoto || "/default-avatar.png"}
                     alt={offer.userName || "User"}
                     width={48}
                     height={48}
-                    className="rounded-full object-cover border border-gray-300"
+                    className="rounded-full h-12 w-12 object-cover border border-gray-300"
                   />
                   <div>
                     <h4 className="font-semibold text-gray-900">

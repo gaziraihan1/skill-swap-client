@@ -4,6 +4,7 @@ import useAxios from '@/hooks/useAxios';
 import { FiSearch } from 'react-icons/fi';
 import { FaRegClock } from 'react-icons/fa';
 import moment from 'moment';
+import Link from 'next/link';
 
 export default function ExploreSkills() {
   const axiosInstance = useAxios();
@@ -76,7 +77,7 @@ export default function ExploreSkills() {
         {allOffers.map((offer) => (
           <div
             key={offer._id}
-            className="bg-white rounded-xl shadow-md p-5 border hover:shadow-lg transition-all"
+            className="bg-white rounded-xl shadow-md p-5 border hover:shadow-lg transition-all flex flex-col justify-between"
           >
             <div className="flex items-center gap-3 mb-4">
               <img
@@ -94,11 +95,17 @@ export default function ExploreSkills() {
             <div className="flex justify-between items-center mt-4 text-sm">
               <span className="px-3 py-1 rounded-full bg-blue-100 text-blue-700 font-medium">
                 {skillMap[offer.skill] || offer.skill}
-
               </span>
               <span className="flex items-center text-gray-500 gap-1">
                 <FaRegClock /> {moment(offer.createdAt).fromNow()}
               </span>
+            </div>
+            <div className='mt-2 lg:mt-4'>
+              <Link href={`/explore/${offer._id}`}>
+              <button className='w-full py-2 px-5 text-center bg-blue-600 rounded text-white'>
+                Request
+              </button>
+              </Link>
             </div>
           </div>
         ))}

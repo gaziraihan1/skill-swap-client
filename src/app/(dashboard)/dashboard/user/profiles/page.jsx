@@ -14,6 +14,7 @@ const ProfilePage = () => {
   const [editing, setEditing] = useState(false);
   const [imageFile, setImageFile] = useState(null);
   const [uploading, setUploading] = useState(false);
+  console.log(profile)
 
   useEffect(() => {
     if (user?.email && !editing) {
@@ -24,6 +25,7 @@ const ProfilePage = () => {
       });
     }
   }, [user, editing]);
+
 
   const handleChange = e => {
     const { name, value } = e.target;
@@ -73,6 +75,7 @@ const ProfilePage = () => {
       const { _id, ...sanitizedProfile } = updatedProfile;
 
       await axiosSecure.put(`/users/${user.email}`, sanitizedProfile);
+      await axiosSecure.patch(`/offers?userEmail=${user?.email}`, {userPhoto: imageUrl, userName: profile.name})
 
       setProfile(updatedProfile);
       setOriginalProfile(updatedProfile);
@@ -105,7 +108,7 @@ const ProfilePage = () => {
                 alt="Profile"
                 width={100}
                 height={100}
-                className="rounded-full border"
+                className="rounded-full h-25 w-25 object-cover border"
               />
             ) : (
               <div className="w-[100px] h-[100px] rounded-full border bg-gray-200 flex items-center justify-center text-gray-500">
