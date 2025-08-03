@@ -2,11 +2,11 @@ import React from 'react'
 
 export default function ExploreSkills() {
   const popularSkills = [
-  { title: 'Graphic Design', emoji: '🎨' },
   { title: 'Web Development', emoji: '💻' },
-  { title: 'Yoga', emoji: '🧘' },
-  { title: 'Photography', emoji: '📷' },
-  { title: 'Public Speaking', emoji: '🗣' },
+  { title: 'Graphic Design', emoji: '🎨' },
+  { title: 'UI/UX Design', emoji: '🧩' },
+  { title: 'Mobile App Development', emoji: '📱' },
+  { title: 'Data Science', emoji: '📊' },
 ];
 
   return (
@@ -20,9 +20,9 @@ export default function ExploreSkills() {
             <option value="select">select</option>
             <option value="grapchic_design">Graphic Design</option>
             <option value="web_development">Web Development</option>
-            <option value="yoga">Yoga</option>
-            <option value="photography">Photography</option>
-            <option value="public_speaking">Public Speaking</option>
+            <option value="ui_ux_design">UI/UX Design</option>
+            <option value="app_development">Mobile App Defelopment</option>
+            <option value="data_science">Data Science</option>
           </select>
         </div>
       </div>

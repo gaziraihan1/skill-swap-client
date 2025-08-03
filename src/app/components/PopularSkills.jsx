@@ -3,12 +3,13 @@ import React from 'react';
 import {motion} from 'framer-motion'
 
 const popularSkills = [
-  { title: 'Graphic Design', emoji: '🎨' },
   { title: 'Web Development', emoji: '💻' },
-  { title: 'Yoga', emoji: '🧘' },
-  { title: 'Photography', emoji: '📷' },
-  { title: 'Public Speaking', emoji: '🗣' },
+  { title: 'Graphic Design', emoji: '🎨' },
+  { title: 'UI/UX Design', emoji: '🧩' },
+  { title: 'Mobile App Development', emoji: '📱' },
+  { title: 'Data Science', emoji: '📊' },
 ];
+
 
 export default function PopularSkills() {
   return (

@@ -24,37 +24,36 @@ export default function DashboardLayout({ children }) {
   if (loading || !user || !role ) return <div className="p-10 text-center">Loading...</div>;
 
   return (
-    <div className="flex min-h-screen bg-gray-50">
-      <Sidebar
-        role={role}
-        showSidebar={showSidebar}
-        setShowSidebar={setShowSidebar}
-        userEmail={user.email}
+  <div className="min-h-screen bg-gray-50">
+    <Sidebar
+      role={role}
+      showSidebar={showSidebar}
+      setShowSidebar={setShowSidebar}
+      userEmail={user.email}
+    />
+    {showSidebar && (
+      <div
+        onClick={() => setShowSidebar(false)}
+        className="fixed inset-0 bg-black bg-opacity-30 z-40 lg:hidden"
       />
+    )}
 
-      {showSidebar && (
-        <div
-          onClick={() => setShowSidebar(false)}
-          className="fixed inset-0 bg-black bg-opacity-30 z-40 lg:hidden"
-        />
-      )}
-
-      <div className="flex-1 flex flex-col overflow-x-hidden">
-        <div className="lg:hidden p-4 bg-white shadow-md flex justify-between items-center sticky top-0 z-30">
-          <h1 className="text-lg font-bold text-gray-800 capitalize">{role} Dashboard</h1>
-          <button
-            onClick={() => setShowSidebar(!showSidebar)}
-            className="text-gray-700 hover:text-blue-600 p-2 rounded-md hover:bg-gray-100 transition"
-            aria-label="Toggle Menu"
-          >
-            {showSidebar ? <FaTimes className="text-2xl" /> : <FaBars className="text-2xl" />}
-          </button>
-        </div>
-
-        <div className="p-4 md:p-6 lg:p-8 overflow-x-hidden">
-          {children}
-        </div>
+    <div className="lg:ml-64 flex flex-col overflow-x-hidden min-h-screen">
+      <div className="lg:hidden p-4 bg-white shadow-md flex justify-between items-center sticky top-0 z-30">
+        <h1 className="text-lg font-bold text-gray-800 capitalize">{role} Dashboard</h1>
+        <button
+          onClick={() => setShowSidebar(!showSidebar)}
+          className="text-gray-700 hover:text-blue-600 p-2 rounded-md hover:bg-gray-100 transition"
+          aria-label="Toggle Menu"
+        >
+          {showSidebar ? <FaTimes className="text-2xl" /> : <FaBars className="text-2xl" />}
+        </button>
       </div>
+
+      <div className="p-4 md:p-6 lg:p-8">{children}</div>
     </div>
-  );
+  </div>
+);
+
+
 }

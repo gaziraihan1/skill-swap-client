@@ -45,11 +45,10 @@ const Sidebar = ({ role, showSidebar, setShowSidebar, userEmail }) => {
 
   return (
     <aside
-      className={`fixed lg:static inset-y-0 left-0 z-50 w-64 bg-white shadow-2xl flex flex-col transition-transform duration-300 ease-in-out ${
-        showSidebar ? 'translate-x-0' : '-translate-x-full lg:translate-x-0'
-      }`}
+      className={`fixed top-0 left-0 h-screen w-64 z-50 bg-white shadow-2xl flex flex-col transform transition-transform duration-300 ease-in-out
+    ${showSidebar ? 'translate-x-0' : '-translate-x-full'} lg:translate-x-0`}
     >
-      <div className="bg-gradient-to-r from-blue-600 to-indigo-600 p-6 shadow-md">
+      <div className="bg-gradient-to-r from-sky-500 via-blue-600 to-indigo-700 p-6 shadow-md">
         <h2 className="text-white text-xl font-bold capitalize">{role} Panel</h2>
         <p className="text-blue-100 text-sm break-words mt-1">{userEmail}</p>
       </div>

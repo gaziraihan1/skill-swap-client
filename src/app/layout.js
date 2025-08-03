@@ -3,6 +3,7 @@ import "./globals.css";
 import Navbar from "./components/Navbar";
 import ClientProviders from "./components/ClientProviders";
 import Footer from "./components/Footer";
+import { Toaster } from "react-hot-toast";
 
 const poppins = Poppins({
   subsets: ['latin'],
@@ -22,6 +23,7 @@ export default function RootLayout({ children }) {
         <ClientProviders>
           <Navbar />
           <main className="min-h-screen">{children}</main>
+          <Toaster position="top-center" reverseOrder={false} />
           <Footer />
         </ClientProviders>
       </body>

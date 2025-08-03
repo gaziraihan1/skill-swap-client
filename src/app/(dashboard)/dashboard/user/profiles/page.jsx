@@ -25,10 +25,6 @@ const ProfilePage = () => {
     }
   }, [user, editing]);
 
-  useEffect(() => {
-    console.log('editing:', editing);
-  }, [editing]);
-
   const handleChange = e => {
     const { name, value } = e.target;
     setProfile(prev => ({ ...prev, [name]: value }));
