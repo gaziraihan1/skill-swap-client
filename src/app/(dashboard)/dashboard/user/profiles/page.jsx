@@ -99,9 +99,9 @@ const ProfilePage = () => {
           <label className="block text-sm font-medium">Profile Picture</label>
 
           <div className="flex items-center gap-4">
-            {profile.photo ? (
+            {user.photoURL ? (
               <Image
-                src={profile.photo}
+                src={user.photoURL}
                 alt="Profile"
                 width={100}
                 height={100}

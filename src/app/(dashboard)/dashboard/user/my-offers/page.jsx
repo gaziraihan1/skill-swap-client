@@ -1,64 +1,72 @@
-'use client';
+"use client";
 
-import useAuth from '@/hooks/useAuth';
-import useAxiosSecure from '@/hooks/useAxiosSecure';
-import Image from 'next/image';
-import { useEffect, useState } from 'react';
-import { toast } from 'react-hot-toast';
-import { motion } from 'framer-motion';
+import useAuth from "@/hooks/useAuth";
+import useAxiosSecure from "@/hooks/useAxiosSecure";
+import Image from "next/image";
+import { useEffect, useState } from "react";
+import { toast } from "react-hot-toast";
+import { motion } from "framer-motion";
 
 const popularSkills = [
-  { title: 'Web Development', emoji: '💻' },
-  { title: 'Graphic Design', emoji: '🎨' },
-  { title: 'UI/UX Design', emoji: '🧩' },
-  { title: 'Mobile App Development', emoji: '📱' },
-  { title: 'Data Science', emoji: '📊' },
+  { value: "web_development", label: "💻 Web Development" },
+  { value: "graphic_design", label: "🎨 Graphic Design" },
+  { value: "ui_ux_design", label: "🧩 UI/UX Design" },
+  { value: "app_development", label: "📱 Mobile App Development" },
+  { value: "data_science", label: "📊 Data Science" },
 ];
 
 export default function MyOffersPage() {
-  const [title, setTitle] = useState('');
+  const [title, setTitle] = useState("");
   const axiosSecure = useAxiosSecure();
   const [selectedSkill, setSelectedSkill] = useState(null);
-  const [description, setDescription] = useState('');
+  const [description, setDescription] = useState("");
   const [offers, setOffers] = useState([]);
   const { user } = useAuth();
 
+  const fetchOffers = async () => {
+    try {
+      const res = await axiosSecure.get(`/offers?userEmail=${user?.email}`);
+      setOffers(res.data);
+    } catch (error) {
+      toast.error("Failed to load offers.");
+    }
+  };
+
   useEffect(() => {
     if (user?.email) {
-      axiosSecure
-        .get(`/offers?email=${user?.email}`)
-        .then((res) => setOffers(res.data))
-        .catch(() => toast.error('Failed to load offers.'));
+      fetchOffers();
     }
   }, [user?.email]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (!title || !selectedSkill || !description) {
-      toast.error('All fields are required.');
+      toast.error("All fields are required.");
       return;
     }
 
     const offer = {
       title,
-      skill: selectedSkill,
+      skill: selectedSkill.value,
+      skillLabel: selectedSkill.label,
       description,
-      email: user?.email,
+      userName: user?.displayName,
+      userEmail: user?.email,
+      userPhoto: user?.photoURL,
       createdAt: new Date(),
     };
 
     try {
-      const res = await axiosSecure.post('/offers', offer);
+      const res = await axiosSecure.post("/offers", offer);
       if (res.data.insertedId) {
-        toast.success('Offer added!');
-        const response = await axiosSecure.get(`/offers?email=${user?.email}`);
-        setOffers(response.data);
-        setTitle('');
-        setDescription('');
+        toast.success("Offer added!");
+        await fetchOffers(); // <-- fetch updated offers from backend
+        setTitle("");
+        setDescription("");
         setSelectedSkill(null);
       }
     } catch (error) {
-      toast.error('Failed to add offer.');
+      toast.error("Failed to add offer.");
     }
   };
 
@@ -97,15 +105,15 @@ export default function MyOffersPage() {
             {popularSkills.map((skill) => (
               <button
                 type="button"
-                key={skill.title}
+                key={skill.value}
                 className={`px-4 py-2 rounded-full border flex items-center gap-2 transition text-sm ${
-                  selectedSkill === skill.title
-                    ? 'bg-blue-600 text-white border-blue-600'
-                    : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
+                  selectedSkill?.value === skill.value
+                    ? "bg-blue-600 text-white border-blue-600"
+                    : "bg-gray-100 text-gray-700 hover:bg-gray-200"
                 }`}
-                onClick={() => setSelectedSkill(skill.title)}
+                onClick={() => setSelectedSkill(skill)}
               >
-                <span>{skill.emoji}</span> {skill.title}
+                {skill.label}
               </button>
             ))}
           </div>
@@ -130,67 +138,70 @@ export default function MyOffersPage() {
         </button>
       </motion.form>
 
-     <motion.div
-  className="w-full"
-  initial={{ opacity: 0 }}
-  animate={{ opacity: 1 }}
-  transition={{ delay: 0.2 }}
->
-  <h3 className="text-2xl font-bold mb-6 text-gray-800">Your Offers</h3>
+      <motion.div
+        className="w-full"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: 0.2 }}
+      >
+        <h3 className="text-2xl font-bold mb-6 text-gray-800">Your Offers</h3>
 
-  {offers.length === 0 ? (
-    <p className="text-gray-500">No offers added yet.</p>
-  ) : (
-    <motion.div
-      className="grid gap-8 md:grid-cols-2"
-      initial="hidden"
-      animate="visible"
-      variants={{
-        visible: {
-          transition: {
-            staggerChildren: 0.1,
-          },
-        },
-      }}
-    >
-      {offers.map((offer, index) => (
-        <motion.div
-          key={index}
-          className="bg-white rounded-2xl p-6 shadow-md hover:shadow-lg border border-gray-200 transition-all duration-300 group"
-          variants={{
-            hidden: { opacity: 0, y: 20 },
-            visible: { opacity: 1, y: 0 },
-          }}
-        >
-          <div className="flex items-center gap-4 mb-4">
-            <Image
-              src={user?.photoURL || '/default-avatar.png'}
-              alt={user?.displayName || 'User'}
-              width={48}
-              height={48}
-              className="rounded-full object-cover border border-gray-300"
-            />
-            <div>
-              <h4 className="font-semibold text-gray-900">{user?.displayName || 'Anonymous'}</h4>
-              <p className="text-sm text-gray-500">{user?.email}</p>
-            </div>
-          </div>
+        {offers.length === 0 ? (
+          <p className="text-gray-500">No offers added yet.</p>
+        ) : (
+          <motion.div
+            className="grid gap-8 md:grid-cols-2"
+            initial="hidden"
+            animate="visible"
+            variants={{
+              visible: {
+                transition: {
+                  staggerChildren: 0.1,
+                },
+              },
+            }}
+          >
+            {offers.map((offer, index) => (
+              <motion.div
+                key={index}
+                className="bg-white rounded-2xl p-6 shadow-md hover:shadow-lg border border-gray-200 transition-all duration-300 group"
+                variants={{
+                  hidden: { opacity: 0, y: 20 },
+                  visible: { opacity: 1, y: 0 },
+                }}
+              >
+                <div className="flex items-center gap-4 mb-4">
+                  <Image
+                    src={offer.userPhoto || "/default-avatar.png"}
+                    alt={offer.userName || "User"}
+                    width={48}
+                    height={48}
+                    className="rounded-full object-cover border border-gray-300"
+                  />
+                  <div>
+                    <h4 className="font-semibold text-gray-900">
+                      {offer.userName || "Anonymous"}
+                    </h4>
+                    <p className="text-sm text-gray-500">{offer.userEmail}</p>
+                  </div>
+                </div>
 
-          <h5 className="text-lg font-bold text-gray-800 mb-1 group-hover:text-blue-700 transition-colors">
-            {offer.title}
-          </h5>
+                <h5 className="text-lg font-bold text-gray-800 mb-1 group-hover:text-blue-700 transition-colors">
+                  {offer.title}
+                </h5>
 
-          <span className="inline-block bg-blue-100 text-blue-700 text-xs font-semibold px-2.5 py-0.5 rounded-full mb-2">
-            Skill: {offer.skill}
-          </span>
+                <span className="inline-block bg-blue-100 text-blue-700 text-xs font-semibold px-2.5 py-0.5 rounded-full mb-2">
+                  Skill: {offer.skillLabel || offer.skill}
+                </span>
 
-          <p className="text-sm text-gray-700 leading-relaxed">{offer.description}</p>
-        </motion.div>
-      ))}
-    </motion.div>
-  )}
-</motion.div>
-
+                <p className="text-sm text-gray-700 leading-relaxed">
+                  {offer.description}
+                </p>
+              </motion.div>
+            ))}
+          </motion.div>
+        )}
+      </motion.div>
     </div>
   );
 }
