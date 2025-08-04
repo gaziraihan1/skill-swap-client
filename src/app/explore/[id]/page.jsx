@@ -49,6 +49,8 @@ const handleSendRequest = async () => {
       senderEmail: user.email,
       receiverEmail: offer?.userEmail,
       status: "pending",
+      userPhoto: user.photoURL,
+      offer,
       createdAt: new Date(),
     });
 
