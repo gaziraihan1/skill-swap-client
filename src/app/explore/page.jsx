@@ -101,11 +101,12 @@ export default function ExploreSkills() {
               </span>
             </div>
             <div className='mt-2 lg:mt-4'>
-              <Link href={`/explore/${offer._id}`}>
-              <button className='w-full py-2 px-5 text-center bg-blue-600 rounded text-white'>
+              {offer.completed === true ?<button disabled className='py-2 px-5 text-center w-full bg-gray-600 rounded text-gray-300 pointer-events-none'>Already swapped</button>: <Link href={`/explore/${offer._id}`}>
+              <button disabled className='w-full py-2 px-5 text-center bg-blue-600 rounded text-white'>
                 Request
               </button>
-              </Link>
+              </Link>}
+              
             </div>
           </div>
         ))}

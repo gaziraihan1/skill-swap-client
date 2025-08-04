@@ -3,8 +3,8 @@
 import React, { useEffect, useState } from 'react';
 import useAuth from '@/hooks/useAuth';
 import useAxiosSecure from '@/hooks/useAxiosSecure';
-import { toast } from 'sonner';
 import { FaCheck, FaTimes, FaUserCircle } from 'react-icons/fa';
+import toast from 'react-hot-toast';
 
 const skillMap = {
   web_development: '💻 Web Development',
@@ -19,7 +19,7 @@ export default function SwapRequests() {
   const axiosSecure = useAxiosSecure();
   const [requests, setRequests] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [type, setType] = useState('sent'); // default to sent requests
+  const [type, setType] = useState('sent');
 
   useEffect(() => {
     if (user?.email) {
@@ -28,7 +28,6 @@ export default function SwapRequests() {
         .get(`/swap-requests?email=${user.email}`)
         .then((res) => {
           setRequests(res.data);
-          console.log('Fetched requests:', res.data);
           setLoading(false);
         })
         .catch(() => setLoading(false));
@@ -92,12 +91,14 @@ export default function SwapRequests() {
                 ? req.receiver || { email: req.receiverEmail }
                 : req.sender || { email: req.senderEmail };
             const skillLabel = skillMap[req.offer?.skill] || 'Unknown Skill';
+            const returnSkillLabel = skillMap[req.returnOffer?.skill] || 'Unknown Skill';
 
             return (
               <div
                 key={req._id}
                 className="border rounded-2xl shadow-md p-5 bg-white flex flex-col"
               >
+                {/* Avatar + Info */}
                 <div className="flex items-center gap-4 mb-4">
                   {req.userPhoto ? (
                     <img
@@ -109,13 +110,16 @@ export default function SwapRequests() {
                     <FaUserCircle className="w-14 h-14 text-gray-400" />
                   )}
                   <div>
-                    <h3 className="text-lg font-semibold">{counterpart?.name || counterpart?.email}</h3>
+                    <h3 className="text-lg font-semibold">
+                      {counterpart?.name || counterpart?.email}
+                    </h3>
                     <p className="text-sm text-gray-500">{type === 'sent' ? 'To' : 'From'}</p>
                   </div>
                 </div>
 
+                {/* Offer Info */}
                 <div className="mb-3">
-                  <p className="text-sm text-gray-400">Skill</p>
+                  <p className="text-sm text-gray-400">Requested Skill</p>
                   <p className="font-medium">{skillLabel}</p>
                 </div>
 
@@ -127,6 +131,19 @@ export default function SwapRequests() {
                   </div>
                 )}
 
+                {/* Return Offer — only for received */}
+                {type === 'received' && req.returnOffer && (
+                  <div className="mb-3 border-t pt-3 mt-3">
+                    <p className="text-sm text-gray-400">They Offer You</p>
+                    <p className="font-medium">{req.returnOffer.title}</p>
+                    <p className="text-sm text-gray-500 line-clamp-2">{req.returnOffer.description}</p>
+                    <p className="text-sm text-gray-400 mt-1">
+                      Skill: {returnSkillLabel}
+                    </p>
+                  </div>
+                )}
+
+                {/* Status + Buttons */}
                 <div className="flex justify-between items-center mt-auto pt-3 border-t">
                   <span
                     className={`px-3 py-1 rounded-full font-semibold text-sm ${
