@@ -21,7 +21,6 @@ const Sidebar = ({ role, showSidebar, setShowSidebar, userEmail }) => {
   const adminLinks = [
     { href: '/dashboard/admin/analytics', icon: <FaChartBar />, label: 'Analytics' },
     { href: '/dashboard/admin/feedback', icon: <FaEnvelope />, label: 'Feedback' },
-    { href: '/dashboard/admin/messages', icon: <FaEnvelope />, label: 'Messages' },
     { href: '/dashboard/admin/posts', icon: <FaFileAlt />, label: 'Posts' },
     { href: '/dashboard/admin/profile', icon: <FaUserCircle />, label: 'Profile' },
     { href: '/dashboard/admin/reports', icon: <FaTasks />, label: 'Reports' },

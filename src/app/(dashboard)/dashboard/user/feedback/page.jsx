@@ -78,11 +78,11 @@ export default function FeedbackPage() {
       let feedback;
       if (feedbackType === 'swap') {
         feedback = {
-          swapId: formData.swapId,
-          targetUser: formData.targetUser,
+          generalType: "swap",
           rating: parseInt(formData.rating),
           message: formData.message,
           userEmail: user?.email,
+          userName: user?.displayName,
           feedbackUserPhoto: user?.photoURL,
         };
       } else {
@@ -92,6 +92,7 @@ export default function FeedbackPage() {
           generalType: formData.generalType,
           subject: formData.subject,
           message: formData.message,
+          userName: user?.displayName,
         };
       }
 
@@ -237,44 +238,48 @@ export default function FeedbackPage() {
       </form>
 
       <div className="mt-10">
-        <h3 className="text-xl font-semibold text-gray-800 mb-4">Your Submitted Feedback</h3>
+  <h3 className="text-xl font-semibold text-gray-800 mb-4">Your Submitted Feedback</h3>
 
-        {loadingFeedbacks ? (
-         <div className="space-y-4">
-    {[...Array(skeletonCount)].map((_, i) => (
-      <div key={i} className="animate-pulse p-4 border rounded shadow bg-gray-100">
-        <div className="h-4 bg-gray-300 rounded w-1/3 mb-2"></div>
-        <div className="h-4 bg-gray-300 rounded w-2/3 mb-2"></div>
-        <div className="h-4 bg-gray-300 rounded w-full"></div>
-      </div>
-    ))}
-  </div>
-        ) : userFeedbacks.length === 0 ? (
-          <p className="text-gray-500">You haven’t submitted any feedback yet.</p>
-        ) : (
-          <div className="space-y-4">
-            {userFeedbacks.map((fb) => (
-              <div key={fb._id} className="p-4 border rounded shadow bg-white">
-                <div className="flex justify-between items-center mb-1">
-                  <span className="font-semibold text-blue-700">
-                    {fb.swapId ? `Swap Feedback` : fb.generalType}
-                  </span>
-                  <span className="text-sm text-gray-500">
-                    {new Date(fb.createdAt).toLocaleString()}
-                  </span>
-                </div>
-                {fb.subject && (
-                  <div className="text-lg font-bold text-gray-800 mb-1">{fb.subject}</div>
-                )}
-                {fb.rating && (
-                  <div className="text-yellow-500 mb-1">⭐ {fb.rating}/5</div>
-                )}
-                <p className="text-gray-700">{fb.message}</p>
-              </div>
-            ))}
+  {loadingFeedbacks ? (
+    <div className="space-y-4">
+      {[...Array(skeletonCount)].map((_, i) => (
+        <div key={i} className="animate-pulse p-4 border rounded shadow bg-gray-100">
+          <div className="h-4 bg-gray-300 rounded w-1/3 mb-2"></div>
+          <div className="h-4 bg-gray-300 rounded w-2/3 mb-2"></div>
+          <div className="h-4 bg-gray-300 rounded w-full"></div>
+        </div>
+      ))}
+    </div>
+  ) : userFeedbacks.length === 0 ? (
+    <p className="text-gray-500">You haven’t submitted any feedback yet.</p>
+  ) : (
+    <div className="space-y-4">
+      {userFeedbacks.map((fb) => (
+        <div key={fb._id} className="p-4 border rounded shadow bg-white">
+          <div className="flex justify-between items-center mb-1">
+            <span className="font-semibold text-blue-700">
+              {fb.swapId ? 'Swap Feedback' : fb.generalType === 'feature' ? 'Feature Request' : fb.generalType === 'bug' ? 'Bug Report' : 'Platform Experience'}
+            </span>
+            <span className="text-sm text-gray-500">
+              {new Date(fb.createdAt).toLocaleString()}
+            </span>
           </div>
-        )}
-      </div>
+
+          {fb.subject && (
+            <div className="text-lg font-bold text-gray-800 mb-1">{fb.subject}</div>
+          )}
+
+          {fb.rating && (
+            <div className="text-yellow-500 mb-1">⭐ {fb.rating}/5</div>
+          )}
+
+          <p className="text-gray-700">{fb.message}</p>
+        </div>
+      ))}
+    </div>
+  )}
+</div>
+
     </div>
   );
 }
