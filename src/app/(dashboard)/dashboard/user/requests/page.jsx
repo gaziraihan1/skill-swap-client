@@ -8,11 +8,40 @@ import toast from 'react-hot-toast';
 
 const skillMap = {
   web_development: '💻 Web Development',
-  graphic_design: '🎨 Graphic Design',
-  ui_ux_design: '🎯 UI/UX Design',
+  frontend_development: '🌐 Frontend Development',
+  backend_development: '🖥️ Backend Development',
+  fullstack_development: '🧠 Full Stack Development',
   app_development: '📱 Mobile App Development',
+  game_development: '🎮 Game Development',
+  ai_ml: '🤖 AI / Machine Learning',
   data_science: '📊 Data Science',
+  cybersecurity: '🔐 Cybersecurity',
+  devops: '⚙️ DevOps',
+  blockchain: '⛓️ Blockchain Development',
+  graphic_design: '🎨 Graphic Design',
+  ui_ux_design: '🧩 UI/UX Design',
+  video_editing: '🎬 Video Editing',
+  animation: '🌀 Animation',
+  illustration: '🖌️ Illustration',
+  '3d_modeling': '📐 3D Modeling',
+  digital_marketing: '📢 Digital Marketing',
+  seo: '🔍 SEO',
+  content_marketing: '✍️ Content Marketing',
+  social_media: '📱 Social Media Marketing',
+  business_strategy: '📊 Business Strategy',
+  project_management: '🗂️ Project Management',
+  content_writing: '📝 Content Writing',
+  copywriting: '📄 Copywriting',
+  technical_writing: '🧾 Technical Writing',
+  creative_writing: '🎭 Creative Writing',
+  translation: '🌍 Translation',
+  public_speaking: '🎤 Public Speaking',
+  leadership: '👑 Leadership',
+  time_management: '⏰ Time Management',
+  problem_solving: '🧠 Problem Solving',
+  teamwork: '🤝 Teamwork',
 };
+
 
 export default function SwapRequests() {
   const { user } = useAuth();

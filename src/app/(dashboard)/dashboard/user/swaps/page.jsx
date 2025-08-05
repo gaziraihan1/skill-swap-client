@@ -11,7 +11,7 @@ const SwapPage = () => {
 
   const [activeSwaps, setActiveSwaps] = useState([]);
   const [swapHistory, setSwapHistory] = useState([]);
-  const [view, setView] = useState("active"); // "active" or "history"
+  const [view, setView] = useState("active"); 
   const [showModal, setShowModal] = useState(false);
   const [selectedRequestId, setSelectedRequestId] = useState(null);
 
@@ -37,7 +37,6 @@ const SwapPage = () => {
       await axiosSecure.patch(`/requests/complete/${selectedRequestId}`);
       toast.success("Swap marked as completed");
       setShowModal(false);
-      // Refresh active swaps and history
       const [active, history] = await Promise.all([
         axiosSecure.get(`/swaps/active/${user.email}`),
         axiosSecure.get(`/swaps/history/${user.email}`)
@@ -101,7 +100,6 @@ const SwapPage = () => {
         </button>
       </div>
 
-      {/* Swap List */}
       <div className="space-y-4">
         {view === "active" && activeSwaps.length === 0 && <p className="text-center text-gray-500">No active swaps found.</p>}
         {view === "active" && activeSwaps.map(renderSwapCard)}
@@ -110,7 +108,6 @@ const SwapPage = () => {
         {view === "history" && swapHistory.map(renderSwapCard)}
       </div>
 
-      {/* Confirmation Modal */}
       {showModal && (
         <div className="fixed inset-0 bg-black bg-opacity-40 flex items-center justify-center z-50">
           <div className="bg-white rounded-lg p-6 max-w-sm w-full shadow-xl">

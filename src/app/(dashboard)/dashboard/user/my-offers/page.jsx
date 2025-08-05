@@ -9,10 +9,38 @@ import { motion } from "framer-motion";
 
 const popularSkills = [
   { value: "web_development", label: "💻 Web Development" },
+  { value: "frontend_development", label: "🌐 Frontend Development" },
+  { value: "backend_development", label: "🖥️ Backend Development" },
+  { value: "fullstack_development", label: "🧠 Full Stack Development" },
+  { value: "app_development", label: "📱 Mobile App Development" },
+  { value: "game_development", label: "🎮 Game Development" },
+  { value: "ai_ml", label: "🤖 AI / Machine Learning" },
+  { value: "data_science", label: "📊 Data Science" },
+  { value: "cybersecurity", label: "🔐 Cybersecurity" },
+  { value: "devops", label: "⚙️ DevOps" },
+  { value: "blockchain", label: "⛓️ Blockchain Development" },
   { value: "graphic_design", label: "🎨 Graphic Design" },
   { value: "ui_ux_design", label: "🧩 UI/UX Design" },
-  { value: "app_development", label: "📱 Mobile App Development" },
-  { value: "data_science", label: "📊 Data Science" },
+  { value: "video_editing", label: "🎬 Video Editing" },
+  { value: "animation", label: "🌀 Animation" },
+  { value: "3d_modeling", label: "📐 3D Modeling" },
+  { value: "illustration", label: "🖌️ Illustration" },
+  { value: "digital_marketing", label: "📢 Digital Marketing" },
+  { value: "seo", label: "🔍 SEO" },
+  { value: "content_marketing", label: "✍️ Content Marketing" },
+  { value: "social_media", label: "📱 Social Media Marketing" },
+  { value: "business_strategy", label: "📊 Business Strategy" },
+  { value: "project_management", label: "🗂️ Project Management" },
+  { value: "content_writing", label: "📝 Content Writing" },
+  { value: "copywriting", label: "📄 Copywriting" },
+  { value: "technical_writing", label: "🧾 Technical Writing" },
+  { value: "creative_writing", label: "🎭 Creative Writing" },
+  { value: "translation", label: "🌍 Translation" },
+  { value: "public_speaking", label: "🎤 Public Speaking" },
+  { value: "leadership", label: "👑 Leadership" },
+  { value: "time_management", label: "⏰ Time Management" },
+  { value: "problem_solving", label: "🧠 Problem Solving" },
+  { value: "teamwork", label: "🤝 Teamwork" },
 ];
 
 export default function MyOffersPage() {
@@ -60,7 +88,7 @@ export default function MyOffersPage() {
       const res = await axiosSecure.post("/offers", offer);
       if (res.data.insertedId) {
         toast.success("Offer added!");
-        await fetchOffers(); // <-- fetch updated offers from backend
+        await fetchOffers(); 
         setTitle("");
         setDescription("");
         setSelectedSkill(null);

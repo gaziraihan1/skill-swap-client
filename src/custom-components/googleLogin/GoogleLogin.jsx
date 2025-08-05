@@ -17,7 +17,7 @@ export default function GoogleLogin() {
       const userData = {
         name: user.displayName,
         email: user.email,
-        image: user.photoURL,
+        photo: user.photoURL,
         role: 'user',
       };
 

@@ -2,14 +2,16 @@
 
 import { useEffect, useState } from 'react';
 import useAuth from '@/hooks/useAuth';
-import useAxiosSecure from '@/hooks/useAxiosSecure';
 import toast from 'react-hot-toast';
+import useAxiosSecure from '@/hooks/useAxiosSecure';
 
 export default function FeedbackPage() {
   const { user } = useAuth();
   const axiosSecure = useAxiosSecure();
 
   const [feedbackType, setFeedbackType] = useState('swap');
+  const [skeletonCount, setSkeletonCount] = useState(1);
+
   const [formData, setFormData] = useState({
     swapId: '',
     targetUser: '',
@@ -20,6 +22,8 @@ export default function FeedbackPage() {
   });
 
   const [completedSwaps, setCompletedSwaps] = useState([]);
+  const [userFeedbacks, setUserFeedbacks] = useState([]);
+  const [loadingFeedbacks, setLoadingFeedbacks] = useState(true);
 
   useEffect(() => {
     if (user?.email) {
@@ -29,6 +33,25 @@ export default function FeedbackPage() {
         .catch((err) => console.error(err));
     }
   }, [user, axiosSecure]);
+
+  const fetchUserFeedbacks = async () => {
+  if (!user?.email) return;
+  try {
+    setLoadingFeedbacks(true);
+    const res = await axiosSecure.get(`/feedback/user/${user.email}`);
+    setSkeletonCount(res.data.length || 3); 
+    setUserFeedbacks(res.data);
+  } catch (err) {
+    console.error(err);
+  } finally {
+    setLoadingFeedbacks(false);
+  }
+};
+
+
+  useEffect(() => {
+    fetchUserFeedbacks();
+  }, [user]);
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -59,12 +82,12 @@ export default function FeedbackPage() {
           targetUser: formData.targetUser,
           rating: parseInt(formData.rating),
           message: formData.message,
-          feedbackUser: user?.email,
+          userEmail: user?.email,
           feedbackUserPhoto: user?.photoURL,
         };
       } else {
         feedback = {
-          feedbackUser: user?.email,
+          userEmail: user?.email,
           feedbackUserPhoto: user?.photoURL,
           generalType: formData.generalType,
           subject: formData.subject,
@@ -72,7 +95,7 @@ export default function FeedbackPage() {
         };
       }
 
-      const res = await axiosSecure.post('/feedback', feedback);
+      const res = await axiosSecure.post("/feedback", feedback);
 
       if (res.data.insertedId) {
         toast.success('Feedback submitted');
@@ -84,6 +107,8 @@ export default function FeedbackPage() {
           generalType: '',
           subject: '',
         });
+
+        fetchUserFeedbacks(); 
       }
     } catch (err) {
       console.error(err);
@@ -210,6 +235,46 @@ export default function FeedbackPage() {
           Submit Feedback
         </button>
       </form>
+
+      <div className="mt-10">
+        <h3 className="text-xl font-semibold text-gray-800 mb-4">Your Submitted Feedback</h3>
+
+        {loadingFeedbacks ? (
+         <div className="space-y-4">
+    {[...Array(skeletonCount)].map((_, i) => (
+      <div key={i} className="animate-pulse p-4 border rounded shadow bg-gray-100">
+        <div className="h-4 bg-gray-300 rounded w-1/3 mb-2"></div>
+        <div className="h-4 bg-gray-300 rounded w-2/3 mb-2"></div>
+        <div className="h-4 bg-gray-300 rounded w-full"></div>
+      </div>
+    ))}
+  </div>
+        ) : userFeedbacks.length === 0 ? (
+          <p className="text-gray-500">You haven’t submitted any feedback yet.</p>
+        ) : (
+          <div className="space-y-4">
+            {userFeedbacks.map((fb) => (
+              <div key={fb._id} className="p-4 border rounded shadow bg-white">
+                <div className="flex justify-between items-center mb-1">
+                  <span className="font-semibold text-blue-700">
+                    {fb.swapId ? `Swap Feedback` : fb.generalType}
+                  </span>
+                  <span className="text-sm text-gray-500">
+                    {new Date(fb.createdAt).toLocaleString()}
+                  </span>
+                </div>
+                {fb.subject && (
+                  <div className="text-lg font-bold text-gray-800 mb-1">{fb.subject}</div>
+                )}
+                {fb.rating && (
+                  <div className="text-yellow-500 mb-1">⭐ {fb.rating}/5</div>
+                )}
+                <p className="text-gray-700">{fb.message}</p>
+              </div>
+            ))}
+          </div>
+        )}
+      </div>
     </div>
   );
 }

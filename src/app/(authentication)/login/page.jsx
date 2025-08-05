@@ -30,7 +30,6 @@ export default function Login() {
 
     try {
       await login(email, password);
-      // Success handled by useEffect redirect
     } catch (err) {
       setError(err.message || 'Login failed. Please try again.');
     } finally {

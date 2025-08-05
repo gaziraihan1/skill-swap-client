@@ -28,12 +28,41 @@ export default function ExploreSkills() {
   };
 
   const skillMap = {
-  web_development: "💻 Web Development",
-  graphic_design: "🎨 Graphic Design",
-  ui_ux_design: "🎯 UI/UX Design",
-  app_development: "📱 Mobile App Development",
-  data_science: "📊 Data Science"
+  web_development: '💻 Web Development',
+  frontend_development: '🌐 Frontend Development',
+  backend_development: '🖥️ Backend Development',
+  fullstack_development: '🧠 Full Stack Development',
+  app_development: '📱 Mobile App Development',
+  game_development: '🎮 Game Development',
+  ai_ml: '🤖 AI / Machine Learning',
+  data_science: '📊 Data Science',
+  cybersecurity: '🔐 Cybersecurity',
+  devops: '⚙️ DevOps',
+  blockchain: '⛓️ Blockchain Development',
+  graphic_design: '🎨 Graphic Design',
+  ui_ux_design: '🧩 UI/UX Design',
+  video_editing: '🎬 Video Editing',
+  animation: '🌀 Animation',
+  illustration: '🖌️ Illustration',
+  '3d_modeling': '📐 3D Modeling',
+  digital_marketing: '📢 Digital Marketing',
+  seo: '🔍 SEO',
+  content_marketing: '✍️ Content Marketing',
+  social_media: '📱 Social Media Marketing',
+  business_strategy: '📊 Business Strategy',
+  project_management: '🗂️ Project Management',
+  content_writing: '📝 Content Writing',
+  copywriting: '📄 Copywriting',
+  technical_writing: '🧾 Technical Writing',
+  creative_writing: '🎭 Creative Writing',
+  translation: '🌍 Translation',
+  public_speaking: '🎤 Public Speaking',
+  leadership: '👑 Leadership',
+  time_management: '⏰ Time Management',
+  problem_solving: '🧠 Problem Solving',
+  teamwork: '🤝 Teamwork',
 };
+
 
   useEffect(() => {
     fetchOffers();
@@ -65,11 +94,11 @@ export default function ExploreSkills() {
           }}
         >
           <option value="">All Skills</option>
-          <option value="web_development">💻 Web Development</option>
-          <option value="graphic_design">🎨 Graphic Design</option>
-          <option value="ui_ux_design">🧩 UI/UX Design</option>
-          <option value="app_development">📱 Mobile App Development</option>
-          <option value="data_science">📊 Data Science</option>
+           {Object.entries(skillMap).map(([key, label]) => (
+    <option key={key} value={key}>
+      {label}
+    </option>
+  ))}
         </select>
       </div>
 
@@ -102,7 +131,7 @@ export default function ExploreSkills() {
             </div>
             <div className='mt-2 lg:mt-4'>
               {offer.completed === true ?<button disabled className='py-2 px-5 text-center w-full bg-gray-600 rounded text-gray-300 pointer-events-none'>Already swapped</button>: <Link href={`/explore/${offer._id}`}>
-              <button disabled className='w-full py-2 px-5 text-center bg-blue-600 rounded text-white'>
+              <button className='w-full py-2 px-5 text-center bg-blue-600 rounded text-white'>
                 Request
               </button>
               </Link>}

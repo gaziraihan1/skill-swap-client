@@ -43,7 +43,7 @@ export default function Banner() {
 
         <div className="w-full md:w-1/2 flex justify-center">
           <Image
-            src="/people-collaborating-image.png" // Make sure this image exists in /public/images/
+            src="/people-collaborating-image.png" 
             alt="Skill Sharing Illustration"
             width={500}
             height={400}
