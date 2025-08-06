@@ -17,41 +17,20 @@ const adminRoutes = [
     icon: <FileText className="w-6 h-6 text-green-600" />,
     href: '/dashboard/admin/feedback',
   },
-  {
-    name: 'Messages',
-    icon: <MessageCircle className="w-6 h-6 text-purple-600" />,
-    href: '/dashboard/admin/messages',
-  },
-  {
-    name: 'Posts',
-    icon: <FilePlus2 className="w-6 h-6 text-pink-600" />,
-    href: '/dashboard/admin/posts',
-  },
+  
   {
     name: 'Profile',
     icon: <User className="w-6 h-6 text-blue-600" />,
     href: '/dashboard/admin/profile',
   },
-  {
-    name: 'Reports',
-    icon: <ShieldCheck className="w-6 h-6 text-red-600" />,
-    href: '/dashboard/admin/reports',
-  },
+  
   {
     name: 'Roles',
     icon: <BadgeCheck className="w-6 h-6 text-yellow-600" />,
     href: '/dashboard/admin/roles',
   },
-  {
-    name: 'Settings',
-    icon: <Settings className="w-6 h-6 text-gray-600" />,
-    href: '/dashboard/admin/settings',
-  },
-  {
-    name: 'Skills',
-    icon: <Atom className="w-6 h-6 text-orange-600" />,
-    href: '/dashboard/admin/skills',
-  },
+  
+  
   {
     name: 'Swaps',
     icon: <Repeat className="w-6 h-6 text-indigo-600" />,

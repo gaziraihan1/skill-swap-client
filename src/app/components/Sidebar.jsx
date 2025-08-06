@@ -3,7 +3,7 @@
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import {
-  FaUserCircle, FaEnvelope, FaExchangeAlt, FaChartBar,  FaUserShield, FaCog, FaTasks, FaUsers,
+  FaUserCircle, FaEnvelope, FaExchangeAlt, FaChartBar,  FaUserShield,  FaTasks, FaUsers,
   FaAddressBook, FaGift, FaHome
 } from 'react-icons/fa';
 
@@ -21,9 +21,7 @@ const Sidebar = ({ role, showSidebar, setShowSidebar, userEmail }) => {
     { href: '/dashboard/admin/analytics', icon: <FaChartBar />, label: 'Analytics' },
     { href: '/dashboard/admin/feedback', icon: <FaEnvelope />, label: 'Feedback' },
     { href: '/dashboard/admin/profile', icon: <FaUserCircle />, label: 'Profile' },
-    { href: '/dashboard/admin/reports', icon: <FaTasks />, label: 'Reports' },
     { href: '/dashboard/admin/roles', icon: <FaUserShield />, label: 'Roles' },
-    { href: '/dashboard/admin/settings', icon: <FaCog />, label: 'Settings' },
     { href: '/dashboard/admin/swaps', icon: <FaExchangeAlt />, label: 'Swaps' },
     { href: '/dashboard/admin/users', icon: <FaUsers />, label: 'Users' },
   ];

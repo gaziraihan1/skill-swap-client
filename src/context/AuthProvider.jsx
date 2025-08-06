@@ -24,9 +24,11 @@ export default function AuthProvider({ children }) {
   };
 
   const login = (email, password) => {
-    setLoading(true);
-    return signInWithEmailAndPassword(auth, email, password);
-  };
+  setLoading(true);
+  return signInWithEmailAndPassword(auth, email, password)
+    .finally(() => setLoading(false));
+};
+
 
   const signInWithGoogle = () => {
     setLoading(true);

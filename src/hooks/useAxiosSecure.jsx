@@ -2,6 +2,7 @@
 import axios from 'axios'
 import useAuth from './useAuth'
 import { useEffect } from 'react'
+import toast from 'react-hot-toast'
 
 const axiosSecure = axios.create({
   baseURL: 'http://localhost:5000',
@@ -32,7 +33,7 @@ const useAxiosSecure = () => {
         (error) => {
           if (error.response?.status === 401 || error.response?.status === 403) {
             logout()
-              .then(() => console.log('Logged out due to auth error'))
+              .then(() => toast.error('Logged out due to auth error'))
           }
           return Promise.reject(error)
         }

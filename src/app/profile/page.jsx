@@ -8,7 +8,8 @@ import { useEffect, useState } from 'react'
 
 export default function UserProfile() {
   const { user } = useAuth()
-  const axiosSecure = useAxiosSecure()
+  const axiosSecure = useAxiosSecure();
+  console.log(user)
 
   const [offersMade, setOffersMade] = useState(0)
   const [offersReceived, setOffersReceived] = useState(0)
@@ -38,7 +39,7 @@ export default function UserProfile() {
             alt={user?.displayName || 'User'}
             width={100}
             height={100}
-            className="rounded-full border border-gray-300 object-cover"
+            className="rounded-full h-25 w-25 border border-gray-300 object-cover"
           />
         </div>
 

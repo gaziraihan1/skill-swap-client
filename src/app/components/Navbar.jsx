@@ -12,7 +12,7 @@ const Navbar = () => {
   const { user, logout, loading } = useAuth();
 
   const logoutUser = () => {
-    logout().then(() => console.log('Logged out'));
+    logout().then(() => {});
   };
 
   const handleToggle = () => setIsMenuOpen(prev => !prev);

@@ -14,7 +14,6 @@ const ProfilePage = () => {
   const [editing, setEditing] = useState(false);
   const [imageFile, setImageFile] = useState(null);
   const [uploading, setUploading] = useState(false);
-  console.log(profile)
 
   useEffect(() => {
     if (user?.email && !editing) {
@@ -41,7 +40,6 @@ const ProfilePage = () => {
 
   const handleSubmit = async e => {
     e.preventDefault();
-    console.log('handleSubmit triggered');
     setUploading(true);
 
     try {
@@ -145,26 +143,6 @@ const ProfilePage = () => {
             name="bio"
             value={profile.bio || ''}
             onChange={handleChange}
-            className="w-full border p-2 rounded"
-            disabled={!editing}
-          />
-        </div>
-
-        <div>
-          <label className="block text-sm font-medium">Skills (comma separated)</label>
-          <input
-            name="skills"
-            value={Array.isArray(profile.skills) ? profile.skills.join(', ') : ''}
-            onChange={e => {
-              const value = e.target.value;
-              setProfile(prev => ({
-                ...prev,
-                skills:
-                  value.trim() === ''
-                    ? []
-                    : value.split(',').map(skill => skill.trim()).filter(Boolean),
-              }));
-            }}
             className="w-full border p-2 rounded"
             disabled={!editing}
           />

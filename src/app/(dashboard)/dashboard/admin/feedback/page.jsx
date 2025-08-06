@@ -18,7 +18,6 @@ const FeedbackSkeleton = () => (
 const FeedbackCard = ({ feedback }) => {
   const { userName, feedbackUserPhoto
 , generalType, message,  createdAt, subject } = feedback;
-  console.log(feedback)
 
   return (
     <div className="bg-white p-4 shadow rounded-lg mb-4">

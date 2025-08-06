@@ -70,7 +70,7 @@ export default function RegisterPage() {
       }
 
       await createUser(data.email, data.password)
-      await updateUser({ displayName: data.name })
+      await updateUser({ displayName: data.name, photoURL: cloudData.secure_url })
 
       await logout()
       reset()
