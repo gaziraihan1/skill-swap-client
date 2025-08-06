@@ -37,16 +37,7 @@ export default function UserProfile() {
       animate={{ opacity: 1 }}
     >
       <div className="bg-white rounded-2xl shadow-md p-6 md:flex items-center gap-8">
-        <div className="flex-shrink-0">
-          <Image
-            src={user?.photoURL || '/default-avatar.png'}
-            alt={user?.displayName || 'User'}
-            width={100}
-            height={100}
-            className="rounded-full h-25 w-25 border border-gray-300 object-cover"
-          />
-        </div>
-
+       
         <div className="mt-6 md:mt-0">
           <h2 className="text-2xl font-bold text-gray-800">
             {user?.displayName || 'Anonymous User'}

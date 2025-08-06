@@ -25,7 +25,6 @@ const Navbar = () => {
     ...(user?.email
       ? [
           { name: 'Dashboard', href: '/dashboard' },
-          { name: 'Profile', href: '/profile' },
         ]
       : [
           { name: 'Login', href: '/login' },

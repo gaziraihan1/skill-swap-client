@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react';
 import useAuth from '@/hooks/useAuth';
 import useAxiosSecure from '@/hooks/useAxiosSecure';
 import Image from 'next/image';
+import UserProfile from '@/custom-components/UserProfile';
 
 const Skeleton = ({ className }) => (
   <div
@@ -204,6 +205,7 @@ const ProfilePage = () => {
           Edit Profile
         </button>
       )}
+      <UserProfile />
     </div>
   );
 };
