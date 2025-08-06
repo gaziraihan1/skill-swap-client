@@ -3,7 +3,7 @@ import useAuth from "@/hooks/useAuth";
 import useAxiosSecure from "@/hooks/useAxiosSecure";
 import { useRouter } from "next/navigation";
 import React, { useEffect, useState } from "react";
-import { FaUser, FaCalendarAlt } from "react-icons/fa";
+import {  FaCalendarAlt } from "react-icons/fa";
 import Swal from "sweetalert2";
 
 export default function RequestPage({ params }) {

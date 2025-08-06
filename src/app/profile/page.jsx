@@ -5,18 +5,21 @@ import Image from 'next/image'
 import useAuth from '@/hooks/useAuth'
 import useAxiosSecure from '@/hooks/useAxiosSecure'
 import { useEffect, useState } from 'react'
+import { useRouter } from 'next/navigation'
 
 export default function UserProfile() {
   const { user } = useAuth()
   const axiosSecure = useAxiosSecure();
-  console.log(user)
+  const router = useRouter()
 
   const [offersMade, setOffersMade] = useState(0)
   const [offersReceived, setOffersReceived] = useState(0)
+  if(!user) {
+      return router.push("/")
+  }
 
   useEffect(() => {
-    if (!user?.email) return
-
+    
     axiosSecure.get(`/offers/made/${user.email}`).then((res) => {
       setOffersMade(res.data.count || 0)
     })
