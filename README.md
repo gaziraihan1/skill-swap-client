@@ -8,7 +8,7 @@ SkillSwap is a web application built with **Next.js 15**, **Tailwind CSS**, and 
 
 ## 🔗 Live Website
 
-[👉 Visit SkillSwap Live](https://skill-swap-application.vercel.ap)
+[👉 Visit SkillSwap Live](https://skill-swap-application.vercel.app)
 
 ---
 
