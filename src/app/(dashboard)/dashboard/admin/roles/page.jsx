@@ -1,15 +1,15 @@
-'use client';
+"use client";
 
-import Image from 'next/image';
-import React, { useEffect, useState } from 'react';
-import { FaUserShield } from 'react-icons/fa';
-import { toast } from 'react-hot-toast';
-import useAxiosSecure from '@/hooks/useAxiosSecure';
+import Image from "next/image";
+import React, { useEffect, useState } from "react";
+import { FaUserShield } from "react-icons/fa";
+import { toast } from "react-hot-toast";
+import useAxiosSecure from "@/hooks/useAxiosSecure";
 
 export default function AdminRoles() {
   const [users, setUsers] = useState([]);
   const [loading, setLoading] = useState(true);
-  const axiosSecure = useAxiosSecure()
+  const axiosSecure = useAxiosSecure();
 
   const fetchUsers = async () => {
     try {
@@ -29,11 +29,13 @@ export default function AdminRoles() {
 
   const handleMakeAdmin = async (email) => {
     try {
-      const res = await axiosSecure.patch(`http://localhost:5000/users/admin/${email}`);
+      const res = await axiosSecure.patch(
+        `https://skill-swap-with-next-server.vercel.app/users/admin/${email}`
+      );
       const result = await res.data;
       if (result.modifiedCount > 0) {
         toast.success("User promoted to admin");
-        fetchUsers(); 
+        fetchUsers();
       } else {
         toast.error("Failed to promote user");
       }

@@ -1,9 +1,9 @@
-const { default: axios } = require("axios")
+const { default: axios } = require("axios");
 
 const axiosInstance = axios.create({
-    baseURL: 'http://localhost:5000'
-})
+  baseURL: "https://skill-swap-with-next-server.vercel.app",
+});
 const useAxios = () => {
-    return axiosInstance;
-}
+  return axiosInstance;
+};
 export default useAxios;
