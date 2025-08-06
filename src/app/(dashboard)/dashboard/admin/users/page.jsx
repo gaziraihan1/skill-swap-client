@@ -4,7 +4,6 @@ import { useEffect, useState, Suspense } from 'react';
 import useAxiosSecure from '@/hooks/useAxiosSecure';
 import { FaUserCircle } from 'react-icons/fa';
 
-// Skeleton component for loading state
 const UserCardSkeleton = () => {
   return (
     <div className="bg-white p-4 rounded shadow animate-pulse space-y-3">
@@ -17,7 +16,6 @@ const UserCardSkeleton = () => {
   );
 };
 
-// Actual card UI for a user
 const UserCard = ({ user }) => {
   return (
     <div className="bg-white p-4 rounded shadow">
@@ -46,7 +44,6 @@ const UserCard = ({ user }) => {
   );
 };
 
-// Main page component
 export default function AdminUsersPage() {
   const [users, setUsers] = useState([]);
   const [loading, setLoading] = useState(true);

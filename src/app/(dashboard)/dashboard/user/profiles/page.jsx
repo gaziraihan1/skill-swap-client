@@ -21,7 +21,7 @@ const ProfilePage = () => {
   const [editing, setEditing] = useState(false);
   const [imageFile, setImageFile] = useState(null);
   const [uploading, setUploading] = useState(false);
-  const [loading, setLoading] = useState(true); // added loading state
+  const [loading, setLoading] = useState(true); 
 
   useEffect(() => {
     if (user?.email && !editing) {
