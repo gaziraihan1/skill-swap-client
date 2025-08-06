@@ -2,7 +2,7 @@
 
 import useAuth from '@/hooks/useAuth';
 import Link from 'next/link';
-import { usePathname } from 'next/navigation';
+import { usePathname, useRouter } from 'next/navigation';
 import { useState } from 'react';
 import { FiMenu, FiX } from 'react-icons/fi';
 
@@ -10,9 +10,11 @@ const Navbar = () => {
   const pathname = usePathname();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const { user, logout, loading } = useAuth();
+  const {push} = useRouter()
 
-  const logoutUser = () => {
-    logout().then(() => {});
+  const logoutUser = async () => {
+    await logout();
+    push('/')
   };
 
   const handleToggle = () => setIsMenuOpen(prev => !prev);

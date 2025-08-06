@@ -35,9 +35,9 @@ export default function AuthProvider({ children }) {
     return signInWithPopup(auth, provider);
   };
 
-  const logout = () => {
+  const logout = async () => {
     setLoading(true);
-    return signOut(auth);
+    return await signOut(auth);
   };
 
   const updateUser = (updateData) => {
