@@ -5,6 +5,7 @@ import { FiSearch } from 'react-icons/fi';
 import { FaRegClock } from 'react-icons/fa';
 import moment from 'moment';
 import Link from 'next/link';
+import Image from 'next/image';
 
 export default function ExploreSkills() {
   const axiosInstance = useAxios();
@@ -109,10 +110,12 @@ export default function ExploreSkills() {
             className="bg-white rounded-xl shadow-md p-5 border hover:shadow-lg transition-all flex flex-col justify-between"
           >
             <div className="flex items-center gap-3 mb-4">
-              <img
+              <Image
                 src={offer.userPhoto}
+                width={10}
+                height={10}
                 alt="user"
-                className="w-10 h-10 rounded-full object-cover"
+                className="w-10 h-10 rounded-full"
               />
               <div>
                 <h4 className="font-semibold text-sm">{offer.userName}</h4>

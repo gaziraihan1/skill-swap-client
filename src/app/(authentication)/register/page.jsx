@@ -59,7 +59,7 @@ export default function RegisterPage() {
       const backendRes = await axiosSecure.post('/users', {
         name: data.name,
         email: data.email,
-        profileImage: cloudData.secure_url,
+        photo: cloudData.secure_url,
         role: 'user' 
       })
 
