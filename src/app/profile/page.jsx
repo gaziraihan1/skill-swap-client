@@ -14,10 +14,11 @@ export default function UserProfile() {
 
   const [offersMade, setOffersMade] = useState(0)
   const [offersReceived, setOffersReceived] = useState(0)
-  if(!user) {
-      return router.push("/")
-  }
-
+  useEffect(() => {
+    if (!user) {
+      router.push('/');
+    }
+  }, [user, router]);
   useEffect(() => {
     
     axiosSecure.get(`/offers/made/${user.email}`).then((res) => {
