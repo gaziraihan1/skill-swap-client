@@ -64,12 +64,6 @@ SkillSwap is a web application built with **Next.js 15**, **Tailwind CSS**, and 
 
 ---
 
-## 📸 Screenshots
-
-> Add screenshots here (e.g., Home page, Offers, Profile, Swap Requests)
-
----
-
 ## 🧪 Improvements Coming Soon
 
 - Add pagination on explore page
@@ -91,6 +85,9 @@ npm install
 
 # Add environment variables
 touch .env.local
+```
+
+---
 
 ## 🤝 Contributing
 
