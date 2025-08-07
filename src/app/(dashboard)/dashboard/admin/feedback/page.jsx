@@ -69,8 +69,8 @@ const FeedbackList = () => {
   }, [axiosSecure, page]);
 
   return (
-    <div className="max-w-3xl mx-auto px-4">
-      <h2 className="text-3xl font-bold mb-6">User Feedback</h2>
+    <div className="max-w-3xl mx-auto px-2">
+      <h2 className="text-2xl md:text-3xl font-bold mb-6">User Feedback</h2>
       {loading
         ? Array.from({ length: limit }).map((_, i) => <FeedbackSkeleton key={i} />)
         : feedbacks.map((fb) => <FeedbackCard key={fb._id} feedback={fb} />)}

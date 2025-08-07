@@ -28,8 +28,8 @@ export default function HowItWorks() {
 
   return (
     <section className="py-16 bg-gray-50">
-      <div className="max-w-7xl mx-auto px-6">
-        <h2 className="text-3xl font-bold text-center mb-12 text-gray-800">
+      <div className="max-w-7xl mx-auto px-2">
+        <h2 className="text-2xl md:text-3xl font-bold text-center mb-12 text-gray-800">
           How It Works
         </h2>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10">
@@ -43,7 +43,7 @@ export default function HowItWorks() {
               className="bg-white shadow-md rounded-2xl p-6 text-center hover:shadow-xl transition duration-300"
             >
               <div className="mb-4 flex justify-center">{step.icon}</div>
-              <h3 className="text-xl font-semibold mb-2 text-gray-700">
+              <h3 className="text-lg md:text-xl font-semibold mb-2 text-gray-700">
                 {step.title}
               </h3>
               <p className="text-gray-500 text-sm">{step.description}</p>

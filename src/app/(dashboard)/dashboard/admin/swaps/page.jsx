@@ -49,10 +49,10 @@ export default function AdminSwaps() {
   };
 
   return (
-    <div className="p-4">
+    <div className="p-2">
       <h2 className="text-2xl font-semibold mb-4">Admin Swaps</h2>
 
-      <div className="flex gap-4 mb-6">
+      <div className="flex flex-wrap gap-4 mb-6">
         {statusOptions.map(status => (
           <button
             key={status}

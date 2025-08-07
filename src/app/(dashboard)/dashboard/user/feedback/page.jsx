@@ -118,7 +118,7 @@ export default function FeedbackPage() {
   };
 
   return (
-    <div className="max-w-3xl mx-auto p-6 bg-white rounded-lg shadow mt-10">
+    <div className="max-w-3xl mx-auto p-3 bg-white rounded-lg shadow mt-10">
       <h2 className="text-2xl font-bold mb-6 text-center text-gray-800">Give Your Feedback</h2>
 
       <div className="flex justify-center gap-4 mb-6">
@@ -238,7 +238,7 @@ export default function FeedbackPage() {
       </form>
 
       <div className="mt-10">
-  <h3 className="text-xl font-semibold text-gray-800 mb-4">Your Submitted Feedback</h3>
+  <h3 className="text-lg md:text-xl font-semibold text-gray-800 mb-4">Your Submitted Feedback</h3>
 
   {loadingFeedbacks ? (
     <div className="space-y-4">

@@ -82,7 +82,7 @@ export default function SwapRequests() {
   );
 
   return (
-    <div className="p-6 max-w-5xl mx-auto">
+    <div className="p-2 max-w-5xl mx-auto">
       <h2 className="text-2xl font-semibold text-center mb-6">Swap Requests</h2>
 
       <div className="flex justify-center gap-4 mb-8">
@@ -108,7 +108,7 @@ export default function SwapRequests() {
         </button>
       </div>
 
-      <div className="grid md:grid-cols-2 gap-6 min-h-[200px]">
+      <div className="flex flex-wrap justify-center items-center gap-6 min-h-[200px]">
         {loading ? (
           <p className="col-span-full text-center">Loading...</p>
         ) : filteredRequests.length === 0 ? (
@@ -127,26 +127,24 @@ export default function SwapRequests() {
                 key={req._id}
                 className="border rounded-2xl shadow-md p-5 bg-white flex flex-col"
               >
-                {/* Avatar + Info */}
                 <div className="flex items-center gap-4 mb-4">
                   {req.userPhoto ? (
                     <img
                       src={req.userPhoto}
                       alt={counterpart?.name || counterpart?.email}
-                      className="w-14 h-14 rounded-full object-cover"
+                      className="w-8 h-8 md:h-12 md:w-12 rounded-full object-cover"
                     />
                   ) : (
                     <FaUserCircle className="w-14 h-14 text-gray-400" />
                   )}
                   <div>
-                    <h3 className="text-lg font-semibold">
+                    <h3 className="md:text-lg font-semibold">
                       {counterpart?.name || counterpart?.email}
                     </h3>
                     <p className="text-sm text-gray-500">{type === 'sent' ? 'To' : 'From'}</p>
                   </div>
                 </div>
 
-                {/* Offer Info */}
                 <div className="mb-3">
                   <p className="text-sm text-gray-400">Requested Skill</p>
                   <p className="font-medium">{skillLabel}</p>
@@ -160,7 +158,6 @@ export default function SwapRequests() {
                   </div>
                 )}
 
-                {/* Return Offer — only for received */}
                 {type === 'received' && req.returnOffer && (
                   <div className="mb-3 border-t pt-3 mt-3">
                     <p className="text-sm text-gray-400">They Offer You</p>
@@ -172,8 +169,7 @@ export default function SwapRequests() {
                   </div>
                 )}
 
-                {/* Status + Buttons */}
-                <div className="flex justify-between items-center mt-auto pt-3 border-t">
+                <div className="flex justify-between items-center gap-1 mt-auto pt-3 border-t">
                   <span
                     className={`px-3 py-1 rounded-full font-semibold text-sm ${
                       req.status === 'pending'

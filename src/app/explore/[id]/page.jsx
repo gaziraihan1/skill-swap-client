@@ -1,40 +1,50 @@
-"use client";
-import useAuth from "@/hooks/useAuth";
-import useAxiosSecure from "@/hooks/useAxiosSecure";
-import { useRouter } from "next/navigation";
-import React, { useEffect, useState } from "react";
-import {  FaCalendarAlt } from "react-icons/fa";
-import Swal from "sweetalert2";
+'use client';
+import useAuth from '@/hooks/useAuth';
+import useAxiosSecure from '@/hooks/useAxiosSecure';
+import { useRouter } from 'next/navigation';
+import React, { useEffect, useState } from 'react';
+import { FaCalendarAlt } from 'react-icons/fa';
+import Swal from 'sweetalert2';
+import Skeleton from 'react-loading-skeleton';
+import 'react-loading-skeleton/dist/skeleton.css';
 
 export default function RequestPage({ params }) {
   const id = params.id;
   const router = useRouter();
   const axiosSecure = useAxiosSecure();
   const [offer, setOffer] = useState(null);
+  const [isOfferLoading, setIsOfferLoading] = useState(true);
   const [myOffers, setMyOffers] = useState([]);
-  const [selectedReturnOfferId, setSelectedReturnOfferId] = useState("");
+  const [selectedReturnOfferId, setSelectedReturnOfferId] = useState('');
   const [loadingRequest, setLoadingRequest] = useState(false);
   const { user, loading } = useAuth();
 
   useEffect(() => {
     if (!loading && !user) {
-      router.push("/login");
+      router.push('/login');
     }
   }, [user, loading, router]);
 
   useEffect(() => {
     if (user) {
-      axiosSecure.get(`/offers/${id}`).then((res) => setOffer(res.data));
-      axiosSecure.get(`/offers?userEmail=${user.email}`).then((res) => setMyOffers(res.data));
+      setIsOfferLoading(true);
+      axiosSecure.get(`/offers/${id}`).then((res) => {
+        setOffer(res.data);
+        setIsOfferLoading(false);
+      });
+
+      axiosSecure
+        .get(`/offers?userEmail=${user.email}`)
+        .then((res) => setMyOffers(res.data));
     }
   }, [user, axiosSecure, id]);
 
   const handleSendRequest = async () => {
     if (!selectedReturnOfferId) {
       Swal.fire({
-        icon: "warning",
-        title: "Select Your Offer",
-        text: "Please select one of your offers to swap.",
+        icon: 'warning',
+        title: 'Select Your Offer',
+        text: 'Please select one of your offers to swap.',
       });
       return;
     }
@@ -48,20 +58,20 @@ export default function RequestPage({ params }) {
 
       if (checkRes.data.requested) {
         Swal.fire({
-          icon: "info",
-          title: "Already Requested",
-          text: "You have already sent a swap request for this offer.",
+          icon: 'info',
+          title: 'Already Requested',
+          text: 'You have already sent a swap request for this offer.',
         });
         return;
       }
 
       const returnOffer = myOffers.find((item) => item._id === selectedReturnOfferId);
 
-      await axiosSecure.post("/swap-requests", {
+      await axiosSecure.post('/swap-requests', {
         offerId: id,
         senderEmail: user.email,
         receiverEmail: offer?.userEmail,
-        status: "pending",
+        status: 'pending',
         userPhoto: user.photoURL,
         offer,
         returnOffer,
@@ -69,23 +79,23 @@ export default function RequestPage({ params }) {
       });
 
       Swal.fire({
-        icon: "success",
-        title: "Request Sent!",
-        text: "Your swap request has been successfully sent.",
+        icon: 'success',
+        title: 'Request Sent!',
+        text: 'Your swap request has been successfully sent.',
       });
     } catch (err) {
       console.error(err);
       if (err.response?.status === 409) {
         Swal.fire({
-          icon: "info",
-          title: "Already Requested",
-          text: "You have already sent a swap request for this offer.",
+          icon: 'info',
+          title: 'Already Requested',
+          text: 'You have already sent a swap request for this offer.',
         });
       } else {
         Swal.fire({
-          icon: "error",
-          title: "Request Failed",
-          text: "Something went wrong while sending the request.",
+          icon: 'error',
+          title: 'Request Failed',
+          text: 'Something went wrong while sending the request.',
         });
       }
     } finally {
@@ -93,16 +103,30 @@ export default function RequestPage({ params }) {
     }
   };
 
-  if (loading) return <p className="text-center text-gray-600">Loading...</p>;
+  if (loading || isOfferLoading) {
+    return (
+      <div className="max-w-2xl mx-auto mt-10 p-6 bg-white shadow-xl rounded-xl">
+        <Skeleton height={30} width={180} className="mb-4" />
+        <Skeleton count={4} className="mb-2" />
+        <div className="flex items-center gap-4 mt-4">
+          <Skeleton circle width={48} height={48} />
+          <div className="flex-1">
+            <Skeleton height={18} width={120} />
+            <Skeleton height={16} width={180} />
+          </div>
+        </div>
+        <Skeleton height={20} width={160} className="mt-4" />
+        <Skeleton height={45} className="mt-6" />
+      </div>
+    );
+  }
 
   return (
-    <div className="max-w-2xl mx-auto mt-10 p-6 bg-white shadow-xl rounded-xl">
-      <h1 className="text-2xl font-bold mb-4 text-center text-gray-800">
-        Swap Request
-      </h1>
+    <div className="max-w-2xl mx-auto mt-10 p-4 bg-white shadow-xl rounded-xl">
+      <h1 className="text-2xl font-bold mb-4 text-center text-gray-800">Swap Request</h1>
 
       {offer ? (
-        <div className="space-y-4">
+        <div className="space-y-4 p-4">
           <h2 className="text-xl font-semibold text-indigo-600">{offer.title}</h2>
           <p className="text-gray-700">{offer.description}</p>
 
@@ -155,7 +179,7 @@ export default function RequestPage({ params }) {
                 disabled={loadingRequest}
                 className="mt-6 px-6 py-2 rounded-lg bg-indigo-600 hover:bg-indigo-700 text-white transition"
               >
-                {loadingRequest ? "Sending..." : "Send Swap Request"}
+                {loadingRequest ? 'Sending...' : 'Send Swap Request'}
               </button>
             </>
           )}

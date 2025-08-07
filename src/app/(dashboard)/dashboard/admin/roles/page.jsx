@@ -49,7 +49,7 @@ export default function AdminRoles() {
   }
 
   return (
-    <div className="p-6 overflow-x-auto">
+    <div className="p-2 overflow-x-auto">
       <h2 className="text-2xl font-semibold mb-4">Manage Roles</h2>
       <table className="min-w-full bg-white shadow-md rounded-md overflow-hidden">
         <thead className="bg-gray-100 text-gray-700">

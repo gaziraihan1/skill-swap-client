@@ -102,7 +102,7 @@ const ProfilePage = () => {
   if (!user) return <p className="text-center py-10">Loading user...</p>;
 
   return (
-    <div className="max-w-3xl mx-auto px-4 py-10">
+    <div className="max-w-3xl mx-auto px-2 py-10">
       <h1 className="text-2xl font-bold mb-6">My Profile</h1>
 
       {loading ? (

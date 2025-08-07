@@ -50,7 +50,7 @@ const SwapPage = () => {
   };
 
   const renderSwapCard = (swap) => (
-    <div key={swap._id} className="border rounded-xl p-4 bg-white shadow">
+    <div key={swap._id} className="border rounded-xl p-3 bg-white shadow">
       <div className="flex justify-between">
         <div>
           <h3 className="font-semibold text-lg mb-1 text-gray-700">Offer:</h3>
@@ -81,10 +81,9 @@ const SwapPage = () => {
   );
 
   return (
-    <div className="max-w-4xl mx-auto py-8 px-4">
-      <h1 className="text-3xl font-bold text-center mb-6">My Swaps</h1>
+    <div className="max-w-4xl mx-auto py-8 px-3">
+      <h1 className="text-2xl md:text-3xl font-bold text-center mb-6">My Swaps</h1>
 
-      {/* Toggle Buttons */}
       <div className="flex justify-center gap-4 mb-6">
         <button
           onClick={() => setView("active")}

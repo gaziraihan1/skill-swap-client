@@ -6,7 +6,7 @@ import { FaUserCircle } from 'react-icons/fa';
 
 const UserCardSkeleton = () => {
   return (
-    <div className="bg-white p-4 rounded shadow animate-pulse space-y-3">
+    <div className="bg-white p-2 rounded shadow animate-pulse space-y-3">
       <div className="h-16 w-16 bg-gray-300 rounded-full mx-auto" />
       <div className="h-4 bg-gray-300 rounded w-3/4 mx-auto" />
       <div className="h-4 bg-gray-300 rounded w-1/2 mx-auto" />
@@ -18,13 +18,13 @@ const UserCardSkeleton = () => {
 
 const UserCard = ({ user }) => {
   return (
-    <div className="bg-white p-4 rounded shadow">
+    <div className="bg-white p-2 rounded shadow">
       <div className="flex justify-center">
         {user.photo ? (
           <img
             src={user.photo}
             alt={user.name}
-            className="w-16 h-16 rounded-full object-cover"
+            className="w-8 h-8 md:w-16 md:h-16 rounded-full object-cover"
           />
         ) : (
           <FaUserCircle className="w-16 h-16 text-gray-400" />
@@ -63,7 +63,7 @@ export default function AdminUsersPage() {
   }, [axiosSecure]);
 
   return (
-    <div className="p-6">
+    <div className="p-2">
       <h1 className="text-2xl font-bold mb-6">All Registered Users</h1>
 
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">

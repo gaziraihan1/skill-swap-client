@@ -14,8 +14,8 @@ const popularSkills = [
 export default function PopularSkills() {
   return (
     <section className="py-16 bg-white">
-      <div className="max-w-6xl mx-auto px-6">
-        <h2 className="text-3xl font-bold text-center text-gray-800 mb-12">
+      <div className="max-w-6xl mx-auto px-2">
+        <h2 className="text-2xl md:text-3xl font-bold text-center text-gray-800 mb-12">
           Popular Skills
         </h2>
 
@@ -29,8 +29,8 @@ export default function PopularSkills() {
               key={index}
               className="flex flex-col items-center justify-center bg-gray-50 p-6 rounded-xl shadow hover:shadow-md transition duration-300"
             >
-              <div className="text-4xl mb-3">{skill.emoji}</div>
-              <h3 className="text-lg font-medium text-gray-700 text-center">
+              <div className="text-2xl md:text-4xl mb-3">{skill.emoji}</div>
+              <h3 className="text-sm lg:text-lg font-medium text-gray-700 text-center">
                 {skill.title}
               </h3>
             </motion.div>

@@ -99,9 +99,9 @@ export default function MyOffersPage() {
   };
 
   return (
-    <div className="max-w-3xl mx-auto p-6 space-y-10">
+    <div className="max-w-3xl mx-auto p-2 space-y-10">
       <motion.h2
-        className="text-3xl font-bold text-center text-gray-800"
+        className="text-2xl md:text-3xl font-bold text-center text-gray-800"
         initial={{ opacity: 0, y: -10 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.4 }}
@@ -111,7 +111,7 @@ export default function MyOffersPage() {
 
       <motion.form
         onSubmit={handleSubmit}
-        className="space-y-4 bg-white shadow-lg p-6 rounded-xl border"
+        className="space-y-4 bg-white shadow-lg p-3 rounded-xl border"
         initial={{ opacity: 0, y: 30 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5 }}
@@ -134,7 +134,7 @@ export default function MyOffersPage() {
               <button
                 type="button"
                 key={skill.value}
-                className={`px-4 py-2 rounded-full border flex items-center gap-2 transition text-sm ${
+                className={`px-4 py-2 rounded-full border flex items-center gap-2 transition text-xs md:text-sm ${
                   selectedSkill?.value === skill.value
                     ? "bg-blue-600 text-white border-blue-600"
                     : "bg-gray-100 text-gray-700 hover:bg-gray-200"
@@ -198,13 +198,13 @@ export default function MyOffersPage() {
                   visible: { opacity: 1, y: 0 },
                 }}
               >
-                <div className="flex items-center gap-4 mb-4">
+                <div className="flex items-center gap-2 mb-4">
                   <Image
                     src={offer?.userPhoto || "/default-avatar.png"}
                     alt={offer.userName || "User"}
                     width={48}
                     height={48}
-                    className="rounded-full h-12 w-12 object-cover border border-gray-300"
+                    className="rounded-full h-8 w-8 md:h-12 md:w-12 object-cover border border-gray-300"
                   />
                   <div>
                     <h4 className="font-semibold text-gray-900">
@@ -214,7 +214,7 @@ export default function MyOffersPage() {
                   </div>
                 </div>
 
-                <h5 className="text-lg font-bold text-gray-800 mb-1 group-hover:text-blue-700 transition-colors">
+                <h5 className="md:text-lg font-bold text-gray-800 mb-1 group-hover:text-blue-700 transition-colors">
                   {offer.title}
                 </h5>
 

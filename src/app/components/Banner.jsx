@@ -6,12 +6,12 @@ import { motion } from 'framer-motion';
 
 export default function Banner() {
   return (
-    <section className="bg-gradient-to-r from-blue-50 to-white py-16">
-      <div className="container mx-auto px-6 flex flex-col-reverse md:flex-row items-center justify-between gap-12">
+    <section className="py-16">
+      <div className="container mx-auto px-2 flex flex-col-reverse md:flex-row items-center justify-between gap-12">
         
         <div className="w-full md:w-1/2 text-center md:text-left">
           <motion.h1 
-            className="text-4xl md:text-5xl font-extrabold text-gray-800 leading-tight"
+            className="text-3xl md:text-4xl lg:text-5xl font-extrabold text-gray-800 leading-tight"
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
@@ -21,7 +21,7 @@ export default function Banner() {
           <motion.p
           initial={{opacity: 0}}
           animate={{opacity: 1}}
-          transition={{duration: 0.6}} className="mt-4 text-gray-600 text-lg md:text-xl">
+          transition={{duration: 0.6}} className="mt-4 text-gray-600 text-lg lg:text-xl">
             Connect, share, and grow by exchanging skills with people around the world.
           </motion.p>
 

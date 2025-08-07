@@ -148,9 +148,9 @@ export default function ExploreSkills() {
                     <p className="text-xs text-gray-500">{offer.userEmail}</p>
                   </div>
                 </div>
-                <h3 className="text-lg font-bold text-blue-700">{offer.title}</h3>
-                <p className="text-gray-700 mt-2">{offer.description}</p>
-                <div className="flex justify-between items-center mt-4 text-sm">
+                <h3 className="md:text-lg font-bold text-blue-700">{offer.title}</h3>
+                <p className="text-sm text-gray-700 mt-2">{offer.description}</p>
+                <div className="flex justify-between items-center mt-4 text-xs md:text-sm">
                   <span className="px-3 py-1 rounded-full bg-blue-100 text-blue-700 font-medium">
                     {skillMap[offer.skill] || offer.skill}
                   </span>

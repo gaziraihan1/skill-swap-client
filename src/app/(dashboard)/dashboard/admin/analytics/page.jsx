@@ -4,9 +4,7 @@ import { useEffect, useState, Suspense } from 'react';
 import useAxiosSecure from '@/hooks/useAxiosSecure';
 import SkeletonCard from '../components/SkeletonCard';
 
-// 🧠 Skill mapping with emoji
 const skillMap = {
-  // 💻 Development & Programming
   web_development: '💻 Web Development',
   frontend_development: '🌐 Frontend Development',
   backend_development: '🖥️ Backend Development',
@@ -19,7 +17,6 @@ const skillMap = {
   devops: '⚙️ DevOps',
   blockchain: '⛓️ Blockchain Development',
 
-  // 🎨 Design & Creativity
   graphic_design: '🎨 Graphic Design',
   ui_ux_design: '🧩 UI/UX Design',
   video_editing: '🎬 Video Editing',
@@ -27,7 +24,6 @@ const skillMap = {
   illustration: '🖌️ Illustration',
   '3d_modeling': '📐 3D Modeling',
 
-  // 📈 Business & Marketing
   digital_marketing: '📢 Digital Marketing',
   seo: '🔍 SEO',
   content_marketing: '✍️ Content Marketing',
@@ -35,14 +31,12 @@ const skillMap = {
   business_strategy: '📊 Business Strategy',
   project_management: '🗂️ Project Management',
 
-  // ✍️ Writing & Communication
   content_writing: '📝 Content Writing',
   copywriting: '📄 Copywriting',
   technical_writing: '🧾 Technical Writing',
   creative_writing: '🎭 Creative Writing',
   translation: '🌍 Translation',
 
-  // 🌟 Soft Skills & Others
   public_speaking: '🎤 Public Speaking',
   leadership: '👑 Leadership',
   time_management: '⏰ Time Management',
@@ -51,9 +45,9 @@ const skillMap = {
 };
 
 const AnalyticsCard = ({ title, value }) => (
-  <div className="p-6 bg-white shadow-md rounded-xl">
+  <div className="p-4 bg-white shadow-md rounded-xl">
     <h3 className="text-lg font-medium">{title}</h3>
-    <p className="text-3xl font-bold mt-2">{value}</p>
+    <p className="text-2xl md:text-3xl font-bold mt-2">{value}</p>
   </div>
 );
 
@@ -91,10 +85,10 @@ const AnalyticsContent = () => {
             return (
               <li
                 key={skill._id}
-                className="p-4 bg-gray-100 rounded-md flex justify-between items-center"
+                className="p-2 bg-gray-100 rounded-md flex justify-between items-center"
               >
                 <span>{skillDisplay}</span>
-                <span className="text-sm text-gray-600">{skill.count} offers</span>
+                <span className="text-xs md:text-sm text-gray-600">{skill.count} offers</span>
               </li>
             );
           })}

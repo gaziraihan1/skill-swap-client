@@ -42,8 +42,8 @@ export default function TestimonialsCarousel() {
 
   return (
     <section className="py-16 bg-white">
-      <div className="max-w-6xl mx-auto px-6">
-        <h2 className="text-3xl font-bold text-center mb-12">What Our Users Say</h2>
+      <div className="max-w-6xl mx-auto px-2">
+        <h2 className="text-2xl md:text-3xl font-bold text-center mb-12">What Our Users Say</h2>
         <div ref={sliderRef} className="keen-slider">
           {testimonials.map((testimonial, index) => (
             <div
