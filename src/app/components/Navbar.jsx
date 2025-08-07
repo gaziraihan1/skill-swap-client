@@ -1,6 +1,7 @@
 'use client';
 
 import useAuth from '@/hooks/useAuth';
+import Image from 'next/image';
 import Link from 'next/link';
 import { usePathname, useRouter } from 'next/navigation';
 import { useState } from 'react';
@@ -39,7 +40,7 @@ const Navbar = () => {
     <nav className="bg-white shadow-md sticky top-0 z-50">
       <div className="container mx-auto px-6 py-4 flex justify-between items-center">
         <Link href="/" className="text-2xl lg:text-3xl font-extrabold text-blue-600">
-          Skill<span className="text-gray-800">Swap</span>
+          <Image src={'/skillswap-logo.png'} height={32} width={140} alt='Navbar icon'/>
         </Link>
 
         <div className="hidden md:flex items-center gap-8">
