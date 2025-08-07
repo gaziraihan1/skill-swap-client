@@ -1,36 +1,121 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# SkillSwap 🌟
 
-## Getting Started
+SkillSwap is a web application built with **Next.js 15**, **Tailwind CSS**, and a powerful backend using **Node.js**, **Express**, and **MongoDB**. It allows users to **offer**, **explore**, and **exchange skills** with others — fostering a community of learning and collaboration.
 
-First, run the development server:
+> ✅ This is my **first full-stack Next.js project**, made while learning Next.js, and some improvements are still in progress.
+
+---
+
+## 🔗 Live Website
+
+[👉 Visit SkillSwap Live](https://skill-swap-application.vercel.app)
+
+---
+
+## 🛠️ Tech Stack
+
+### ⚛️ Frontend
+
+- **Next.js 15 (App Router)**
+- **React 19**
+- **Tailwind CSS & DaisyUI**
+- **Framer Motion**
+- **React Hook Form**
+- **React Icons**
+- **Radix UI**
+- **Lucide React**
+- **Keen Slider**
+- **React Loading Skeleton**
+
+### 🔐 Authentication & Security
+
+- **Firebase Authentication**
+- **JWT Token-based Authorization** (generated and stored with Firebase & backend)
+- **Protected Routes via Middleware**
+
+### 📦 Backend (Separate Repo)
+
+- **Express.js + MongoDB**
+- **JWT Token Handling**
+- **REST APIs for Offers, Swaps, Feedback, and Users**
+
+---
+
+## 🚀 Features
+
+- ✅ Sign Up / Sign In with Firebase
+- ✅ Role-based user system (`admin`, `user`)
+- ✅ Explore available skill offers from other users
+- ✅ Create and manage your own skill offers
+- ✅ Send swap requests and manage swap status (pending, accepted, completed)
+- ✅ Leave feedback & ratings after skill exchange
+- ✅ Admin dashboard for user and swap management
+- ✅ Suspense + Skeleton loading UI for a smooth experience
+- ✅ Fully responsive layout
+
+---
+---
+
+## 🔐 Authentication Flow
+
+- Users authenticate via **Firebase Auth**
+- After login, a **JWT token is generated** from the backend using Firebase ID token and saved in `localStorage`
+- **Protected routes** are handled via `middleware.ts` using token validation
+
+---
+
+## 🧪 Improvements Coming Soon
+
+- Add pagination on explore page
+- Better error handling
+- Notification system for accepted/declined swaps
+- Unit testing with Jest/React Testing Library
+
+---
+
+## 📦 Installation & Local Setup
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+# Clone the repository
+git clone https://github.com/gaziraihan1/skill-swap-client.git
+cd skillswap-client
+
+# Install dependencies
+npm install
+
+# Add environment variables
+touch .env.local
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+---
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+## 🤝 Contributing
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+Contributions, issues, and feature requests are welcome!
 
-## Learn More
+If you'd like to contribute to SkillSwap, please fork the repository and submit a pull request. You can also open an issue to report bugs or suggest new features.
 
-To learn more about Next.js, take a look at the following resources:
+1. Fork the Project
+2. Create your Feature Branch (`git checkout -b feature/YourFeature`)
+3. Commit your Changes (`git commit -m 'Add some feature'`)
+4. Push to the Branch (`git push origin feature/YourFeature`)
+5. Open a Pull Request
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+---
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## 📃 License
 
-## Deploy on Vercel
+This project is licensed under the **MIT License**.  
+You are free to use, modify, and distribute this project for personal and commercial use.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+See the [LICENSE](./LICENSE) file for more details.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+---
+
+## 👨‍💻 Author
+
+### Mohammad Raihan Gazi  
+- 💼 Frontend & Full Stack Developer  
+- 🌍 Based in **Dhaka, Bangladesh**  
+- 📧 Email: [gazyraihan3@gmail.com](mailto:gazyraihan3@gmail.com)  
+- 🔗 LinkedIn: [linkedin.com/in/mohammad-raihan-gazi](https://linkedin.com/in/mohammad-raihan-gazi) 
