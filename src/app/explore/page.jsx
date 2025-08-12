@@ -126,56 +126,70 @@ export default function ExploreSkills() {
           ))}
         </select>
       </div>
+      {
+        allOffers.length === 0 && !loading && (
+          <h2 className='text-center my-2 text-red-500'>There is no offer available for this skill now</h2>
+        )
+      }
 
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
         {loading
-          ? Array.from({ length: limit }).map((_, i) => <SkeletonCard key={i} />)
-          : allOffers.map((offer) => (
-              <div
-                key={offer._id}
-                className="bg-white rounded-xl shadow-md p-5 border hover:shadow-lg transition-all flex flex-col justify-between"
-              >
-                <div className="flex items-center gap-3 mb-4">
-                  <Image
-                    src={offer.userPhoto}
-                    width={40}
-                    height={40}
-                    alt="user"
-                    className="w-10 h-10 rounded-full"
-                  />
-                  <div>
-                    <h4 className="font-semibold text-sm">{offer.userName}</h4>
-                    <p className="text-xs text-gray-500">{offer.userEmail}</p>
-                  </div>
-                </div>
-                <h3 className="md:text-lg font-bold text-blue-700">{offer.title}</h3>
-                <p className="text-sm text-gray-700 mt-2">{offer.description}</p>
-                <div className="flex justify-between items-center mt-4 text-xs md:text-sm">
-                  <span className="px-3 py-1 rounded-full bg-blue-100 text-blue-700 font-medium">
-                    {skillMap[offer.skill] || offer.skill}
-                  </span>
-                  <span className="flex items-center text-gray-500 gap-1">
-                    <FaRegClock /> {moment(offer.createdAt).fromNow()}
-                  </span>
-                </div>
-                <div className="mt-4">
-                  {offer.completed ? (
-                    <button
-                      disabled
-                      className="py-2 px-5 text-center w-full bg-gray-600 rounded text-gray-300 pointer-events-none"
-                    >
-                      Already swapped
-                    </button>
-                  ) : (
-                    <Link href={`/explore/${offer._id}`}>
-                      <button className="w-full py-2 px-5 text-center bg-blue-600 rounded text-white">
-                        Request
-                      </button>
-                    </Link>
-                  )}
-                </div>
-              </div>
-            ))}
+          ? Array.from({ length: limit }).map((_, i) => <SkeletonCard key={i} />) 
+          : 
+           allOffers.map((offer) => (
+  <div
+    key={offer._id}
+    className="bg-white rounded-xl shadow-md border hover:shadow-lg transition-all flex flex-col justify-between overflow-hidden"
+  >
+    <div className="bg-blue-800 text-white p-4 flex items-center gap-3">
+      <Image
+        src={offer.userPhoto}
+        width={40}
+        height={40}
+        alt="user"
+        className="w-10 h-10 rounded-full border-2 border-white"
+      />
+      <div>
+        <h4 className="font-semibold text-sm">{offer.userName}</h4>
+        <p className="text-xs opacity-90">{offer.userEmail}</p>
+      </div>
+    </div>
+
+    <div className="p-5 flex flex-col flex-1 justify-between">
+      <div>
+        <h3 className="md:text-lg font-bold text-blue-700">{offer.title}</h3>
+        <p className="text-sm text-gray-700 mt-2">{offer.description}</p>
+      </div>
+
+      <div className="flex justify-between items-center mt-4 text-xs md:text-sm">
+        <span className="px-3 py-1 rounded-full bg-blue-100 text-blue-700 font-medium">
+          {skillMap[offer.skill] || offer.skill}
+        </span>
+        <span className="flex items-center text-gray-500 gap-1">
+          <FaRegClock /> {moment(offer.createdAt).fromNow()}
+        </span>
+      </div>
+
+      <div className="mt-4">
+        {offer.completed ? (
+          <button
+            disabled
+            className="py-2 px-5 text-center w-full bg-gray-600 rounded text-gray-300 pointer-events-none"
+          >
+            Already swapped
+          </button>
+        ) : (
+          <Link href={`/explore/${offer._id}`}>
+            <button className="w-full py-2 px-5 text-center bg-green-600 rounded text-white">
+              Request
+            </button>
+          </Link>
+        )}
+      </div>
+    </div>
+  </div>
+))
+}
       </div>
 
       {totalPages > 1 && !loading && (

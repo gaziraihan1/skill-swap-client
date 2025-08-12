@@ -34,7 +34,7 @@ export default function WhySkillSwap() {
           Why SkillSwap?
         </h2>
 
-        <div className="grid md:grid-cols-2 gap-8">
+        <div className="grid md:grid-cols-2 gap-6 lg:gap-8">
           {features.map((feature, idx) => (
             <motion.div
             initial={{opacity: 0, y: 20}}
