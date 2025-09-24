@@ -115,7 +115,7 @@ See the [LICENSE](./LICENSE) file for more details.
 ## 👨‍💻 Author
 
 ### Mohammad Raihan Gazi  
-- 💼 Frontend & Full Stack Developer  
+- 💼 Full Stack Developer  
 - 🌍 Based in **Dhaka, Bangladesh**  
 - 📧 Email: [gazyraihan3@gmail.com](mailto:gazyraihan3@gmail.com)  
 - 🔗 LinkedIn: [linkedin.com/in/mohammad-raihan-gazi](https://linkedin.com/in/mohammad-raihan-gazi) 
